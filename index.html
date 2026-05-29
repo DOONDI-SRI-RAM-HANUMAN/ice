@@ -17,63 +17,54 @@
             --black: #050505; 
         }
 
-        body { 
-            margin: 0; 
-            background: var(--black); 
-            color: white; 
-            font-family: 'Poppins', sans-serif; 
-            overflow-x: hidden; 
-        }
+        body { margin: 0; background: var(--black); color: white; font-family: 'Poppins', sans-serif; overflow-x: hidden; }
 
         #canvas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
         
         section { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; z-index: 1; padding: 40px 20px; }
         
         .glass { 
-            background: var(--glass); 
-            backdrop-filter: blur(15px); 
-            padding: 3rem; 
-            border-radius: 40px; 
-            border: 1px solid rgba(255,255,255,0.15); 
-            max-width: 800px; 
-            text-align: center;
+            background: var(--glass); backdrop-filter: blur(15px); padding: 3rem; border-radius: 40px; 
+            border: 1px solid rgba(255,255,255,0.15); max-width: 800px; text-align: center;
             box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
         }
         
-        .gradient-text {
-            background: linear-gradient(to right, var(--pink), var(--purple));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-family: 'Playfair Display', serif;
-        }
-
         h1 { font-family: 'Playfair Display', serif; font-size: 4rem; color: var(--pink); margin-bottom: 20px; }
         h2 { font-family: 'Playfair Display', serif; color: var(--pink); }
         p { font-size: 1.2rem; line-height: 1.8; color: #ccc; }
         
         .btn { 
-            padding: 1.2rem 3rem; 
-            background: var(--pink); 
-            border: none; color: white; border-radius: 50px; cursor: pointer; 
-            font-size: 1.1rem; margin-top: 20px; transition: 0.3s;
+            padding: 1.2rem 3rem; background: var(--pink); border: none; color: white; border-radius: 50px; 
+            cursor: pointer; font-size: 1.1rem; margin-top: 20px; transition: 0.3s;
         }
-        .btn:hover { transform: scale(1.05); }
+        .btn:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--pink); }
         
-        /* Premium Gallery Enhancements */
-        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; width: 100%; max-width: 1000px; }
+        /* Gallery Improvements */
+        .gallery { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 40px; width: 100%; max-width: 1000px; margin-top: 20px; 
+        }
         
         .photo-card { 
-            height: 300px; background: #222; border-radius: 20px; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 2px solid rgba(255,117,140,0.3); transition: 0.4s; cursor: pointer; animation: float 3s ease-in-out infinite; position: relative;
+            height: 350px; background: #222; border-radius: 20px; overflow: hidden; 
+            border: 2px solid rgba(255,117,140,0.3); transition: 0.4s; cursor: pointer; 
+            position: relative;
         }
-        .photo-card:hover { transform: scale(1.05); border-color: var(--pink); box-shadow: 0 0 20px var(--pink); }
-        
-        img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; }
+
+        .photo-card img { 
+            width: 100%; height: 100%; object-fit: cover; transition: 0.6s; 
+        }
+
+        /* Individual Positioning Fixes */
+        .pos-1 { object-position: center center; }
+        .pos-2 { object-position: center center; }
+        .pos-3 { object-position: center 30%; } /* Adjusted downward */
+        .pos-4 { object-position: center 20%; } /* Adjusted alignment */
+
+        .photo-card:hover { transform: translateY(-10px); border-color: var(--pink); box-shadow: 0 10px 30px var(--pink); }
         .photo-card:hover img { transform: scale(1.1); }
 
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-
-        .memories-title { margin-bottom: 30px; font-size: 2rem; color: var(--pink); }
+        .memories-title { margin-bottom: 40px; font-size: 2rem; color: var(--pink); }
     </style>
 </head>
 <body>
@@ -92,13 +83,9 @@
         <div class="glass">
             <h2>Our Memories</h2>
             <p>💖 <b>21 February 2023</b> 💖<br><br>
-
             ✨ I really miss those beautiful days when we were completely happy because of all the silly nonsense we used to do as friends. 🌸💕<br><br>
-
             😂 The random conversations, the endless teasing, the laughter that never seemed to stop, and even you pulling my hand hair 🤣 — all those little moments somehow turned ordinary days into unforgettable memories. 🌈✨<br><br>
-
             🤝 You were there for me during one of the toughest times of my life, and that's something I'll always be grateful for. 💙 No matter what happens, that support will always mean a lot to me. 🌷 Life changed, people changed, and time kept moving forward... but those memories still bring a smile to my face whenever I think about them. 😊💫<br><br>
-
             🎉 <b>Happy Birthday, Ayesha!</b> 🎂💖</p>
         </div>
     </section>
@@ -106,10 +93,10 @@
     <section>
         <h2 class="memories-title">💖 Every Memory Is Special With You, My Bestie 💖</h2>
         <div class="gallery">
-            <div class="photo-card"><img src="ayesha.jpg(1).jpeg" alt="Ayesha 1"></div>
-            <div class="photo-card"><img src="ayesha.jpg(2).jpeg" alt="Ayesha 2"></div>
-            <div class="photo-card"><img src="ayesha.jpg(3).jpeg" alt="Ayesha 3"></div>
-            <div class="photo-card"><img src="ayesha.jpg(4).jpeg" alt="Ayesha 4"></div>
+            <div class="photo-card"><img src="ayesha.jpg(1).jpeg" alt="Ayesha 1" class="pos-1"></div>
+            <div class="photo-card"><img src="ayesha.jpg(2).jpeg" alt="Ayesha 2" class="pos-2"></div>
+            <div class="photo-card"><img src="ayesha.jpg(3).jpeg" alt="Ayesha 3" class="pos-3"></div>
+            <div class="photo-card"><img src="ayesha.jpg(4).jpeg" alt="Ayesha 4" class="pos-4"></div>
         </div>
     </section>
 
