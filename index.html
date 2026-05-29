@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Ayesha | A Cinematic Journey</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400&display=swap');
+        :root { --pink: #ff758c; --black: #050505; }
+        body { margin: 0; background: var(--black); color: white; font-family: 'Poppins', sans-serif; overflow-x: hidden; }
+        #canvas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+        
+        section { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; z-index: 1; padding: 50px; }
+        .glass { background: rgba(255,255,255,0.05); backdrop-filter: blur(20px); padding: 3rem; border-radius: 30px; border: 1px solid rgba(255,255,255,0.1); max-width: 800px; text-align: center; }
+        
+        h1 { font-family: 'Playfair Display', serif; font-size: 4rem; color: var(--pink); margin-bottom: 20px; }
+        h2 { font-family: 'Playfair Display', serif; color: var(--pink); }
+        p { font-size: 1.2rem; line-height: 1.8; color: #ccc; }
+        .btn { padding: 1.2rem 3rem; background: var(--pink); border: none; color: white; border-radius: 50px; cursor: pointer; font-size: 1.1rem; margin-top: 20px; transition: 0.3s; }
+        .btn:hover { transform: scale(1.05); }
+        
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; width: 100%; max-width: 900px; }
+        .photo-card { height: 250px; background: #222; border-radius: 20px; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+        img { width: 100%; height: 100%; object-fit: cover; }
+    </style>
+</head>
+<body>
+
+    <div id="canvas-container"></div>
+
+    <section id="hero">
+        <div class="glass">
+            <h1>Ayesha</h1>
+            <p>Scroll to begin our journey through time.</p>
+            <button class="btn" onclick="window.scrollTo({top: window.innerHeight, behavior: 'smooth'})">Start Exploration</button>
+        </div>
+    </section>
+
+    <section>
+        <div class="glass">
+            <h2>Our Memories</h2>
+            <p>💖 **21 February 2023** 💖
+
+✨ I really miss those beautiful days when we were completely happy because of all the silly nonsense we used to do as friends. 🌸💕
+
+😂 The random conversations, the endless teasing, the laughter that never seemed to stop, and even you pulling my hand hair 🤣 — all those little moments somehow turned ordinary days into unforgettable memories. 🌈✨
+
+🤝 You were there for me during one of the toughest times of my life, and that's something I'll always be grateful for. 💙 No matter what happens, that support will always mean a lot to me.
+
+🌷 Life changed, people changed, and time kept moving forward... but those memories still bring a smile to my face whenever I think about them. 😊💫
+
+🎂 On your birthday, I just want to thank you for being such an important part of my journey and for all the wonderful memories we created together. 💝
+
+🌟 May your life be filled with happiness, success, good health, endless laughter, and countless reasons to smile every single day. 🌹✨
+
+🎉 **Happy Birthday, Ayesha!** 🎂💖
+🌸 Stay happy, keep smiling, and keep being the amazing person you are! 🦋💕
+.<br>
+
+Happy Birthday, Ayesha. 🎂💖.</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="gallery">
+            <div class="photo-card"><img src="ayesha.jpg(1)" alt="Ayesha 1"></div>
+            <div class="photo-card"><img src="ayesha.jpg(2)" alt="Ayesha 2"></div>
+            <div class="photo-card"><img src="ayesha.jpg(3)" alt="Ayesha 3"></div>
+            <div class="photo-card"><img src="ayesha.jpg(4)" alt="Ayesha 4"></div>
+        </div>
+    </section>
+
+    <section>
+        <div class="glass">
+            <h2>These are our beautiful memories</h2>
+            <p>Every picture tells a story, and every memory is a chapter of us. Thank you for being a part of my journey.</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="glass">
+            <h1>Make A Wish ✨</h1>
+            <p>The universe is listening to you today. May all your dreams unfold beautifully.</p>
+            <button class="btn" onclick="alert('✨ Wishing you a lifetime of happiness, Ayesha! ✨')">Release the Stars</button>
+        </div>
+    </section>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+        
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+        const canvas = document.createElement('canvas');
+        canvas.width = 32; canvas.height = 32;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#ff758c';
+        ctx.font = '25px serif';
+        ctx.fillText('❤️', 0, 25);
+        const heartTexture = new THREE.CanvasTexture(canvas);
+
+        // Increased density (2500 particles)
+        const particles = new THREE.BufferGeometry();
+        const count = 2500; 
+        const pos = new Float32Array(count * 3);
+        for(let i=0; i<count * 3; i++) pos[i] = (Math.random() - 0.5) * 30;
+        particles.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+
+        const mat = new THREE.PointsMaterial({ 
+            size: 0.15, // Kept small and delicate
+            map: heartTexture, 
+            transparent: true, 
+            alphaTest: 0.1 
+        });
+        const cloud = new THREE.Points(particles, mat);
+        scene.add(cloud);
+
+        camera.position.z = 5;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            cloud.rotation.y += 0.0002;
+            cloud.rotation.x += 0.0001;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        gsap.utils.toArray(".glass").forEach(panel => {
+            gsap.from(panel, {
+                scrollTrigger: { trigger: panel, start: "top 80%", toggleActions: "play none none reverse" },
+                opacity: 0, y: 50, duration: 1.5
+            });
+        });
+    </script>
+</body>
+</html>
